@@ -2,6 +2,17 @@
 import numpy as np
 from random import *
 
+# Esta función auxiliar recibe un fragmento de la imagen y realiza
+# las multiplicaciones para el resultado de la casilla
+def conv_aux(fragment, kernel):
+    k_row, k_col = kernel.shape
+    result = 0
+    for row in range(k_row):
+        for col in range(k_col):
+            result += fragment[row, col] * kernel[row, col]
+    
+    return result
+
 # La función de convolución recibe la imagen y el kernel
 def convolution(image, kernel):
     # Se obtienen los tamaños de la matriz imagen
@@ -15,13 +26,7 @@ def convolution(image, kernel):
     # Este ciclo itera para recorrer cada una de las casillas en la matriz del resultado
     for matrix_row in range (res.shape[0]):
         for matrix_col in range (res.shape[1]):
-            # Inicializa la suma en 0 y para cada casilla, suma la multiplicacion del kernel con las casillas correspondientes de la matriz
-            result = 0
-            for k_row in range(kernel_row):
-                for k_col in range(kernel_row):
-                    result += image[matrix_row + k_row, matrix_col + k_col] * kernel[k_row, k_col]
-            # Escribe la suma en la casilla correspondiente
-            res[matrix_row, matrix_col] = result
+            res[matrix_row, matrix_col] = conv_aux(image[matrix_row: matrix_row + kernel_row, matrix_col: matrix_col + kernel_col], kernel)
     return res
 
 # Aquí creo 2 números aleatorios para crear la matriz (imagen)
