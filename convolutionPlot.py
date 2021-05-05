@@ -27,15 +27,16 @@ def convolution(image, kernel):
             #np.sum suma el resultado después de hacer la multiplicacion de ambas matrices.
             res[matrix_row, matrix_col] = np.sum(kernel * image[matrix_row: matrix_row + kernel_row, matrix_col: matrix_col + kernel_col])
     
+    # Se realiza el plot de la Imagen
     plt.imshow(res, cmap='gray')
     plt.title("Output Image Using {}X{} Kernel".format(kernel_row, kernel_col))
     plt.show()
 
     return res
 
-
+# Se obtiene la imagen con cv2 y se inicializa la matriz del kernel
 image = cv2.imread("casa.jfif")
 kernel = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
 
-
+# Se manda llamar la función de convolucion con la imagen y el kernel
 image = convolution(image, kernel)
