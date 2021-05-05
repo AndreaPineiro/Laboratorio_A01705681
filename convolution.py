@@ -5,11 +5,9 @@ from random import *
 # La función de convolución recibe la imagen y el kernel
 def convolution(image, kernel):
     # Se obtienen los tamaños de la matriz imagen
-    image_row = image.shape[0]
-    image_col = image.shape[1]
+    image_row, image_col = image.shape
     # Se obtienen los tamaños de la matriz kernel
-    kernel_row = kernel.shape[0]
-    kernel_col = kernel.shape[1]
+    kernel_row, kernel_col = kernel.shape
     
     # Se crea una matriz vacía de respuesta, con el respectivo tamaño que tendrá restando el kernel + 1
     res = np.zeros((image_row - kernel_row + 1, image_col - kernel_col + 1))
