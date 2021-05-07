@@ -5,7 +5,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 # La función de convolución recibe la imagen y el kernel
-def convolution(image, kernel):
+def convolution(image, kernel, verbose=False):
     if len(image.shape) == 3:
         print("Found 3 Dimensions: {}".format(image.shape))
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -28,15 +28,17 @@ def convolution(image, kernel):
             res[matrix_row, matrix_col] = np.sum(kernel * image[matrix_row: matrix_row + kernel_row, matrix_col: matrix_col + kernel_col])
     
     # Se realiza el plot de la Imagen
-    plt.imshow(res, cmap='gray')
-    plt.title("Output Image Using {}X{} Kernel".format(kernel_row, kernel_col))
-    plt.show()
+    if verbose:
+        plt.imshow(res, cmap='gray')
+        plt.title("Output Image Using {}X{} Kernel".format(kernel_row, kernel_col))
+        plt.show()
 
     return res
 
-# Se obtiene la imagen con cv2 y se inicializa la matriz del kernel
-image = cv2.imread("casa.jfif")
-kernel = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
+if __name__ == '__main__':
+    # Se obtiene la imagen con cv2 y se inicializa la matriz del kernel
+    image = cv2.imread("casa.jfif")
+    kernel = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
 
-# Se manda llamar la función de convolucion con la imagen y el kernel
-image = convolution(image, kernel)
+    # Se manda llamar la función de convolucion con la imagen y el kernel
+    image = convolution(image, kernel, True)
