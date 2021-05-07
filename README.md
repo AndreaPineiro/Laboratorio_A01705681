@@ -15,7 +15,7 @@ En este repositorio se encuentran los ejercicios de la clase *Herramientas Compu
   ```
 * Padding: Se realiza una convolución con padding; el programa genera el padding aleatoreamente y apartir de ese se genera la imagen con padding y se realiza la convolución. En consola se muestra el padding aleatorio, y la matriz después de la convolución.
 ```sh
-  py horizontal_line_detection.py
+  py padding.py
   ```
 * Horizontal Line Detection: como prueba para el proyecto, realicé la detección de líneas horizontales. Este programa no recibe ningún argumento, y devuelve la imagen después de aplicar el kelner para la detección de líneas horizontales. 
 ```sh
